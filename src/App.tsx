@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { QuizProvider, useQuiz } from './context/QuizContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/Header';
 import { DeckList } from './components/DeckList';
 import { CreateDeck } from './components/CreateDeck';
@@ -71,12 +72,15 @@ function AppContent() {
 
 function App() {
   return (
-    <QuizProvider>
-      <AppContent />
-    </QuizProvider>
+    <ThemeProvider>
+      <QuizProvider>
+        <AppContent />
+      </QuizProvider>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
 
 

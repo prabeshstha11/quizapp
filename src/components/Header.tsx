@@ -1,5 +1,6 @@
-import { Target, Award, Shuffle, Plus } from 'lucide-react';
+import { Target, TrendingUp, Shuffle, Plus, Moon, Sun } from 'lucide-react';
 import { useQuiz } from '../context/QuizContext';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   onCreateDeck: () => void;
@@ -9,6 +10,7 @@ interface HeaderProps {
 
 export function Header({ onCreateDeck, onViewStats, onCustomQuiz }: HeaderProps) {
   const { userProgress } = useQuiz();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header style={{
@@ -56,18 +58,50 @@ export function Header({ onCreateDeck, onViewStats, onCustomQuiz }: HeaderProps)
         </div>
 
         <div style={{ display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center' }}>
+          {/* Stats Button - Professional Design */}
           <button 
-            className="btn-icon"
+            className="btn-stats"
             onClick={onViewStats}
             title="View Statistics"
-            style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)' }}
           >
-            <Award size={20} />
-            {userProgress.totalQuizzes > 0 && (
-              <span className="badge badge-primary">
-                {Math.round(userProgress.overallAccuracy)}%
-              </span>
-            )}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 'var(--spacing-sm)',
+            }}>
+              <TrendingUp size={20} />
+              {userProgress.totalQuizzes > 0 && (
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                }}>
+                  <span style={{ 
+                    fontSize: '1rem', 
+                    fontWeight: 700,
+                    lineHeight: 1,
+                  }}>
+                    {Math.round(userProgress.overallAccuracy)}%
+                  </span>
+                  <span style={{ 
+                    fontSize: '0.625rem', 
+                    opacity: 0.7,
+                    lineHeight: 1,
+                  }}>
+                    accuracy
+                  </span>
+                </div>
+              )}
+            </div>
+          </button>
+
+          {/* Theme Toggle */}
+          <button 
+            className="btn-icon"
+            onClick={toggleTheme}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
           <button 
