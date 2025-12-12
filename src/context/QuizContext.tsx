@@ -108,7 +108,6 @@ export function QuizProvider({ children }: { children: ReactNode }) {
 
     const correctCount = currentSession.answers.filter(a => a.isCorrect).length;
     const totalQuestions = currentSession.answers.length;
-    const accuracy = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
 
     // Update deck stats
     const deckStats: DeckStats = userProgress.decks[currentSession.deckId] || {
