@@ -262,7 +262,12 @@ export function Quiz({ deck, onClose }: QuizProps) {
               className="btn-primary"
               onClick={handleSubmit}
               disabled={selectedAnswer === null}
-              style={{ minWidth: '200px', fontWeight: 'bold', textTransform: 'uppercase' }}
+              style={{ 
+                minWidth: '160px',
+                padding: 'var(--spacing-md) var(--spacing-xl)',
+                fontSize: '1rem',
+                fontWeight: 'bold'
+              }}
             >
               Check Answer
             </button>
@@ -270,7 +275,12 @@ export function Quiz({ deck, onClose }: QuizProps) {
             <button
               className={isCorrect ? "btn-success" : "btn-error"}
               onClick={handleContinue}
-              style={{ minWidth: '200px', fontWeight: 'bold', textTransform: 'uppercase' }}
+              style={{ 
+                minWidth: '160px',
+                padding: 'var(--spacing-md) var(--spacing-xl)',
+                fontSize: '1rem',
+                fontWeight: 'bold'
+              }}
             >
               Continue
             </button>
